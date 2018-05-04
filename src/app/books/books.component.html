@@ -1,0 +1,72 @@
+<!--
+	<ul >
+      <li class="book"
+      [class.selected]="selectedBook&&selectedBook.name=== book.name"
+      *ngFor="let book of books" >
+         <div (click)="onSelectBook(book)">  Name : {{book.title |uppercase}}</div>
+         <div> Price : {{book.price}}</div>
+      </li>
+    </ul>
+    -->
+    <!-- The form controls for the various config parameters -->
+
+<div>
+
+                    <ngx-datatable #table
+                                   class="table-striped"
+                                   [rows]="books"
+                                   [loadingIndicator]="loadingIndicator"
+                                   [columnMode]="'force'"
+                                   [headerHeight]="40"
+                                   [footerHeight]="45"
+                                   [rowHeight]="'auto'"
+                                   [cssClasses]="{
+                                        sortAscending: 'fa fa-caret-up',
+                                        sortDescending: 'fa fa-caret-down',
+                                        pagerLeftArrow: 'fa  fa-angle-left',
+                                        pagerRightArrow: 'fa fa-angle-right',
+                                        pagerPrevious: 'fa fa-angle-double-left',
+                                        pagerNext: 'fa fa-angle-double-right'
+                                      }"
+                                   [reorderable]="reorderable">
+
+                        <ngx-datatable-column class="col-md-4" name="Title"  prop="title" [sortable]="true">
+                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template let-sort="sortFn">
+                                {{row['title'] }}
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column class="col-md-4" name="Isbns"  prop="isbns" [sortable]="true">
+                          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template let-sort="sortFn">
+                              {{row['isbns'] }}
+                          </ng-template>
+                      </ngx-datatable-column>
+
+                        <ngx-datatable-column class="col-md-4" name="Price"  prop="price" [sortable]="true">
+                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template let-sort="sortFn">
+                                {{row['price'] }}
+                            </ng-template>
+                        </ngx-datatable-column>
+
+
+                        
+                        <ngx-datatable-column class="col-md-4">
+                            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+
+
+                                <button (click)="_opened=!_opened;onSelectBook(row)">
+
+                                    <i class="fa fa-pencil"></i>Edit
+                                </button>
+                                <button (click)="_opened=!_opened;Delete(row)">
+                                    <i class="fa fa-close"></i>Delete
+                                </button>
+
+                            </ng-template>
+                        </ngx-datatable-column>
+
+                    </ngx-datatable>
+
+
+</div>
+
+	
